@@ -4,6 +4,7 @@
         v-bind:key="post.title"
         :post="post" 
         @post-item-changed="Changed"/>
+        
    </div>
 </template>
 <script>
