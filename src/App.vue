@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Post :posts="posts" @post-item-changed="Changed"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import Post from './components/Post.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Post
   },
   data() {
     return {
@@ -34,7 +33,19 @@ export default {
         },
       ]
     }
-  }
+  },
+  methods: {
+      Changed(e) {
+        this.posts.map(function (post) {
+          if (post.title != e.original.title || post.body != e.original.body) {
+            return post
+          }
+          post.title = e.new.title,
+          post.body = e.new.body
+          return post
+        })
+      }
+    }
 }
 </script>
 
